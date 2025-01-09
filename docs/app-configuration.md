@@ -8,7 +8,7 @@ sidebar_label: App Configuration
 
 ## HTTP Settings
 
-This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app. This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
+This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app". This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
 
 ![httpsettings](/img/docs/app-http.png)
 
@@ -73,9 +73,15 @@ Only used for [persistent apps](persistent-apps.md).
 
 Only used for [persistent apps](persistent-apps.md). Persistent apps need to be locked down to a particular node (if you have a cluster of servers). NodeId defines what node this app should be locked down to.
 
+### Service Tags
+
+_available as of 1.11_
+
+You can mark caprover services with special tags. This allows you to better group and view your apps in the table.
+
 ### Instance Count
 
-How many instances of this app should run at the same time. You may have as many instances as you want. However, you are limited by your hardware. If you increase this number and you don't have enough RAM or Disk. Your system crashes it's a difficult task to recover the server. CapRover makes it as easy as a simple click to scale your application. However, don't forget that you are always limited by your hardware!
+How many instances of this app should run at the same time. You may run as many instances as you'd like. However, you are limited by your hardware. If you increase this number and you don't have enough RAM or Disk space, your system may crash. It is advised to consider performance implications before increasing this number.
 
 ### Predeploy Function
 

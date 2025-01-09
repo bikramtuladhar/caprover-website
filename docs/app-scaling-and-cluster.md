@@ -6,7 +6,7 @@ sidebar_label: App Scaling & Cluster
 
 <br/>
 
-Captain offers you multiple ways to scale up your app, running it on multiple processes to take advantage of all the resources on your server.
+CapRover offers you multiple ways to scale up your app, running it on multiple processes to take advantage of all the resources on your server.
 
 ## Run Multiple Instances of App:
 
@@ -15,6 +15,8 @@ Your Pizza app is doing great and you are getting thousands of hits on your webs
 ## Run Multiple Servers:
 
 Wow! Your Pizza app is really popular! You have 3 instances of your app running on the same server, RAM and CPU are almost maxed out. You need to get a second server. How do you connect the servers? Captain does that for you ;-) You simply get a server with Docker installed on it, similar to what you did for the original Captain server. Make sure your shiny new server can be accessed via SSH from the original Captain server (e.g. by copying the Captain's ssh public key to your secondary server).
+
+CapRover uses [Docker Swarm](https://docs.docker.com/engine/swarm/) under the hood. It provides an option to use CapRover UI to set up a cluster of nodes. Alternatively, you can use plain Docker Swarm commands `docker swarm join...` commands to set up your cluster. There is absolutely no difference between the two methods. The first method uses UI and the second method uses command line.
 
 At this point, you have to enter the following information:
 - CapRover IP Address (as seen by remote): this is the IP address of your original server
@@ -61,3 +63,15 @@ At any point in time, you have the option to:
 - Delete Registry Auth Details
 
 However, note that if you have a cluster (more than one server), if you remove your docker registry your apps may misbehave.
+
+
+### Add a Private Docker Registry:
+
+If you need to pull images from a private docker registry such as ghcr.io or dockerhub etc, you will need to provide CapRover with your credentials so that it can pull images. For example for ghcr.io you'll need the following:
+
+- Username: `<your github username>`
+- Password: [a personal token that you create](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) - make sure it has access to read packages at least.
+- Domain: `ghcr.io`
+- Image Prefix: `<your github username>`
+  
+If Docker images are stored as `your-username/your-image` then use your github username as the image prefix. Otherwise, if you have an organization in github where your images are stored as `my-org/my-image`, use `my-org` as your image prefix.

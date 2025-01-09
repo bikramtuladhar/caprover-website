@@ -12,13 +12,10 @@ For example, Docker allows you to define read-only volumes, or UDP only port map
 
 Every time you deploy a new version, or you change a configuration parameter in the app, your service goes through an update process:
 
-```text
-1- CapRover updates the fields that are explicitly set on CapRover UI (env vars, instance count and etc). 
-2- If "Service Update Override" is present, CapRover overrides the result from the previous step with the override content.
-3- If "Pre-deploy script" is present, CapRover runs the pre-deploy script. 
-4- The result from the previous 3 steps is then passed to the Docker API so that Docker can update the service under the hood.
-```
-
+1. CapRover updates the fields that are explicitly set on CapRover UI (env vars, instance count and etc). 
+2. If "Service Update Override" is present, CapRover overrides the result from the previous step with the override content.
+3. If "Pre-deploy script" is present, CapRover runs the pre-deploy script. 
+4. The result from the previous 3 steps is then passed to the Docker API so that Docker can update the service under the hood.
 
 ## Schema
 
@@ -30,8 +27,11 @@ TaskTemplate:
     Labels:
       some.label: some.value
     Image: busybox
-    Command: mycommand.sh
+    Command:
+      - ./mycommand.sh
     Hostname: my.domain.com
+    CapabilityAdd:
+      - CAP_NET_ADMIN
     DNSConfig:
       Nameservers:
          - 8.8.8.8 
@@ -53,7 +53,9 @@ TaskTemplate:
   RestartPolicy:
     Condition: any
     MaxAttempts: 0
-  Placement: {}
+  Placement:
+    Constraints:
+      - node.id==2ivku8v2gvtg4
   Networks:
     - Target: captain-overlay-network
   LogDriver:
@@ -80,7 +82,12 @@ RollbackConfig:
   Order: start-first
 EndpointSpec:
   Mode: vip
-
+  Ports:
+    - Name: something
+      Protocol: tcp
+      TargetPort: 80
+      PublishedPort: 8080
+      PublishMode: host
 ```
 
 
@@ -106,6 +113,16 @@ Another use case is when you want to customize the command:
 TaskTemplate:
   ContainerSpec:
     Command: "./mycommand.sh"
+```
+
+If your container need some CAP_ADD added to the docker service, you can go as follow:
+
+```yaml
+TaskTemplate:
+  ContainerSpec:
+    CapabilityAdd:
+      - CAP_SYS_ADMIN
+      - CAP_NET_ADMIN
 ```
 
 

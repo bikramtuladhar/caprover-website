@@ -19,14 +19,17 @@
       "pre-deploy-script",
       "play-with-docker",
       "run-locally",
-      "certbot-config"
+      "certbot-config",
+      "theme-customization"
     ],
     "Recipes and Tips": [
       "sample-apps",
+      "zero-downtime",
       "database-connection",
       "best-practices",
       "backup-and-restore",
       "recipe-deploy-create-react-app",
+      "stateless-with-persistent-data",
       "docker-compose",
       {
         "type": "subcategory",
@@ -39,10 +42,15 @@
       }
     ],
     "Help": [
-      "server-purchase",
+      {
+        "type": "subcategory",
+        "label": "Server Purchase",
+        "ids": ["server-purchase/digitalocean", "server-purchase/openstack"]
+      },
       "disk-cleanup",
       "firewall",
       "troubleshooting",
+      "troubleshooting-pro",
       "support"
     ]
   }

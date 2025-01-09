@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'CapRover' /* title for your website */,
-  tagline: 'Free and Open Source PaaS!',
+  tagline: 'Scalable, Free and Self-hosted PaaS!',
   cname: 'caprover.com',
   url: 'https://caprover.com' /* your website url */,
   baseUrl: '/' /* base url for your project */,
@@ -45,7 +45,7 @@ const siteConfig = {
           label: 'GitHub',
       },
       {
-          href: 'https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ',
+          href: 'https://join.slack.com/t/caprover/shared_invite/zt-2qlb28drp-RpxNfY3nUhroLuRJUUJzDA',
           label: 'Slack Group',
       },
   ],
